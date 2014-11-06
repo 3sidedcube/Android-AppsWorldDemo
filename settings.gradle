@@ -1,1 +1,7 @@
 include ':app'
+
+include ':Libraries:LightningContent'
+include ':Libraries:LightningLanguage'
+include ':Libraries:LightningMessage'
+include ':Libraries:LightningUi'
+include ':Libraries:LightningUi:Libraries:ExoPlayer:library'

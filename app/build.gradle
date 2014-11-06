@@ -20,7 +20,10 @@ android {
 }
 
 dependencies {
-
+	compile project(':Libraries:LightningContent')
+	compile project(':Libraries:LightningLanguage')
+	compile project(':Libraries:LightningMessage')
+	compile project(':Libraries:LightningUi')
 }
 
 def generatePackage(String name)
@@ -30,18 +33,26 @@ def generatePackage(String name)
 }
 
 task getBundle(type: Exec) {
-	ArrayList<String> args = new ArrayList<String>();
-	args.add(String.valueOf(appid))
+	if (project.hasProperty("appid"))
+	{
+		ArrayList<String> args = new ArrayList<String>();
+		args.add(String.valueOf(appid))
 
-	setArgs(args)
-	executable('./get-bundle.py')
+		setArgs(args)
+		executable('./get-bundle.py')
+	}
 }
 
 task setName() {
-	def valueWriter = file("src/main/res/values/strings.xml")
-	valueWriter.write("<resources>\n" +
+	if (project.hasProperty("appname"))
+	{
+		def valueWriter = file("src/main/res/values/strings.xml")
+		valueWriter.write(
+			"<resources>\n" +
 			"    <string name=\"app_name\">" + appname.replaceAll("[^a-zA-Z0-9\\s_-]", "") + "</string>\n" +
-			"</resources>")
+			"</resources>"
+		)
+	}
 }
 
 tasks.whenTaskAdded { task ->
