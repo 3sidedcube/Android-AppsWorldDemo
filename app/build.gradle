@@ -63,7 +63,27 @@ task setName() {
 		def valueWriter = file("src/main/res/values/strings.xml")
 		valueWriter.write(
 			"<resources>\n" +
-			"    <string name=\"app_name\">" + appname.replaceAll("[^a-zA-Z0-9\\s_-]", "") + "</string>\n" +
+			"\t<string name=\"app_name\">" + appname.replaceAll("[^a-zA-Z0-9\\s_-]", "") + "</string>\n" +
+			"</resources>"
+		)
+	}
+}
+
+task setTint() {
+	if (project.hasProperty("apptint"))
+	{
+		apptint = !apptint.startsWith("#") ? "#" + apptint : ""
+		apptint = apptint.length() == 7 ? apptint + "ff" : ""
+
+		secondary = "#dd" + apptint.substring(3, apptint.length() - 1)
+
+		def valueWriter = file("src/main/res/values/colors.xml")
+		valueWriter.write(
+			"<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
+			"\n" +
+			"<resources>\n" +
+			"\t<color name=\"primary\">" + apptint + "</color>\n" +
+			"\t<color name=\"secondary\">" + secondary + "</color>\n" +
 			"</resources>"
 		)
 	}
@@ -77,6 +97,7 @@ tasks.whenTaskAdded { task ->
 		if (taskName.contains("Release"))
 		{
 			task.dependsOn setName
+			task.dependsOn setTint
 			task.dependsOn getBundle
 		}
 	}

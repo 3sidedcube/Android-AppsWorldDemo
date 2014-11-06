@@ -1,4 +1,5 @@
 <resources>
 	<style name="DefaultTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+		<item name="colorPrimary">@color/primary</item>
 	</style>
 </resources>
