@@ -1,0 +1,16 @@
+[submodule "Libraries/LightningContent"]
+	path = Libraries/LightningContent
+	url = https://scruffyfox@github.com/3sidedcube/Android-LightningContent.git
+	branch = develop
+[submodule "Libraries/LightningLanguage"]
+	path = Libraries/LightningLanguage
+	url = https://scruffyfox@github.com/3sidedcube/Android-LightningLanguage.git
+	branch = develop
+[submodule "Libraries/LightningUi"]
+	path = Libraries/LightningUi
+	url = https://scruffyfox@github.com/3sidedcube/Android-LightningUi.git
+	branch = develop
+[submodule "Libraries/LightningMessage"]
+	path = Libraries/LightningMessage
+	url = https://scruffyfox@github.com/3sidedcube/Android-LightningMessage.git
+	branch = develop
