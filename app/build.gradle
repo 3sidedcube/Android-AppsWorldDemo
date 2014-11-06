@@ -1,0 +1,58 @@
+apply plugin: 'com.android.application'
+
+android {
+	compileSdkVersion 21
+	buildToolsVersion "21.1"
+
+	defaultConfig {
+		applicationId "co.stormcorp.awdemo"
+		minSdkVersion 15
+		targetSdkVersion 21
+		versionCode 1
+		versionName "1.0"
+	}
+
+	productFlavors {
+		demo {
+			applicationId "co.stormcorp.awdemo." + (project.hasProperty('appname') ? generatePackage(appname) : 'default')
+		}
+	}
+}
+
+dependencies {
+
+}
+
+def generatePackage(String name)
+{
+	name = name.toLowerCase().replaceAll("[^a-z]", "");
+	return name;
+}
+
+task getBundle(type: Exec) {
+	ArrayList<String> args = new ArrayList<String>();
+	args.add(String.valueOf(appid))
+
+	setArgs(args)
+	executable('./get-bundle.py')
+}
+
+task setName() {
+	def valueWriter = file("src/main/res/values/strings.xml")
+	valueWriter.write("<resources>\n" +
+			"    <string name=\"app_name\">" + appname.replaceAll("[^a-zA-Z0-9\\s_-]", "") + "</string>\n" +
+			"</resources>")
+}
+
+tasks.whenTaskAdded { task ->
+	if (project.getGradle().startParameter.taskNames.size() > 0)
+	{
+		def taskName = project.getGradle().startParameter.taskNames.get(0);
+
+		if (taskName.contains("Release"))
+		{
+			task.dependsOn setName
+			task.dependsOn getBundle
+		}
+	}
+}
