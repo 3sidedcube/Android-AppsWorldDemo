@@ -27,7 +27,7 @@
 
 		<activity android:name="com.cube.storm.ui.activity.StormActivity" android:theme="@style/DefaultTheme" />
 		<activity android:name="com.cube.storm.ui.activity.VideoPlayerActivity" android:theme="@style/DefaultTheme" />
-		<activity android:name="com.cube.storm.ui.activity.WebViewActivity" android:theme="@style/DefaultTheme" android:configChanges="keyboardHidden|orientation|screenSize" />
+		<activity android:name="com.cube.storm.ui.activity.StormWebActivity" android:theme="@style/DefaultTheme" android:configChanges="keyboardHidden|orientation|screenSize" />
 
 		<!-- Push Notifications -->
 		<receiver

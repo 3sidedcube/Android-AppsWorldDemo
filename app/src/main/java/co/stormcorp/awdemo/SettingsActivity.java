@@ -53,8 +53,9 @@ public class SettingsActivity extends PreferenceActivity implements OnPreference
 		addPreferencesFromResource(R.xml.preferences);
 
 		findPreference("developer_mode").setTitle(inDevelopMode ? "Exit developer mode" : "Enter developer mode");
-		findPreference("locale").setOnPreferenceClickListener(this);
 		findPreference("developer_mode").setOnPreferenceClickListener(this);
+		findPreference("locale").setOnPreferenceClickListener(this);
+		findPreference("locale").setSummary(prefs.getString(PREFS_LOCALE_STRING, "Automatic"));
 	}
 
 	@Override public boolean onPreferenceClick(Preference preference)
@@ -90,6 +91,7 @@ public class SettingsActivity extends PreferenceActivity implements OnPreference
 					index++;
 				}
 
+
 				new AlertDialog.Builder(this)
 					.setTitle("Select")
 					.setSingleChoiceItems(options.toArray(new String[options.size()]), selectedLocale, new DialogInterface.OnClickListener()
@@ -116,14 +118,14 @@ public class SettingsActivity extends PreferenceActivity implements OnPreference
 								editor.putString(PREFS_LOCALE_STRING, options.get(selectedLocaleOption));
 							}
 
-							editor.putBoolean("language_card", true);
 							editor.apply();
-
-							finish();
+							MainApplication.getLanguageSettings().setDefaultLanguage(getApplicationContext(), Uri.parse("cache://languages/" + prefs.getString(SettingsActivity.PREFS_LOCALE, "").toLowerCase(Locale.US) + ".json"));
 
 							Intent intent = getBaseContext().getPackageManager().getLaunchIntentForPackage(getBaseContext().getPackageName());
 							intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 							startActivity(intent);
+
+							finish();
 						}
 					})
 					.setNegativeButton("Close", null)
@@ -209,6 +211,8 @@ public class SettingsActivity extends PreferenceActivity implements OnPreference
 							Intent intent = getBaseContext().getPackageManager().getLaunchIntentForPackage(getBaseContext().getPackageName());
 							intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 							startActivity(intent);
+
+							finish();
 						}
 						else if (failed)
 						{
