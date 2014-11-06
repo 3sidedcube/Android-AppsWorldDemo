@@ -18,6 +18,7 @@ import com.cube.storm.content.lib.listener.UpdateListener;
 import com.cube.storm.language.lib.processor.LanguageTextProcessor;
 import com.cube.storm.message.lib.listener.RegisterListener;
 import com.cube.storm.message.lib.receiver.GCMReceiver;
+import com.cube.storm.ui.data.ContentDensity;
 import com.cube.storm.ui.model.App;
 import com.cube.storm.util.lib.debug.Debug;
 import com.google.gson.JsonObject;
@@ -86,6 +87,7 @@ public class MainApplication extends Application
 			.registerUriResolver("cache", ContentSettings.getInstance().getUriResolvers().get("cache"))
 			.intentFactory(new OverrideIntentFactory())
 			.textProcessor(new LanguageTextProcessor())
+			.contentDensity(ContentDensity.x2_00)
 			.build();
 
 		messageSettings = new MessageSettings.Builder(this)
