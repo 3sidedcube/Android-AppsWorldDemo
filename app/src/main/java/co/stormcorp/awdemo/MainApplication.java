@@ -86,7 +86,13 @@ public class MainApplication extends Application
 		uiSettings = new UiSettings.Builder(this)
 			.registerUriResolver("cache", ContentSettings.getInstance().getUriResolvers().get("cache"))
 			.intentFactory(new OverrideIntentFactory())
-			.textProcessor(new LanguageTextProcessor())
+			.textProcessor(new LanguageTextProcessor()
+			{
+				@Nullable @Override public String process(@Nullable String input)
+				{
+					return "_OVERRIDE_TEXT".equals(input) ? "This is a custom view that has been injected to the overridden Storm content page!" : super.process(input);
+				}
+			})
 			.contentDensity(ContentDensity.x2_00)
 			.build();
 

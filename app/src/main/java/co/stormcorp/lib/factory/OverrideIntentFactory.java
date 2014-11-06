@@ -43,6 +43,20 @@ public class OverrideIntentFactory extends IntentFactory
 				ret = new FragmentIntent(OverrideFragment.class, null, args);
 			}
 		}
+		else if ("cache://pages/39.json".equalsIgnoreCase(pageDescriptor.getSrc()))
+		{
+			if (ret != null)
+			{
+				ret.setFragment(OverrideFragment.class);
+			}
+			else
+			{
+				Bundle args = new Bundle();
+				args.putSerializable(StormActivity.EXTRA_URI, pageDescriptor.getSrc());
+
+				ret = new FragmentIntent(OverrideFragment.class, null, args);
+			}
+		}
 
 		return ret;
 	}
