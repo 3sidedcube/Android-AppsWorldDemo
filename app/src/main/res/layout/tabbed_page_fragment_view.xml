@@ -12,14 +12,17 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 	>
-		<com.astuetz.PagerSlidingTabStrip
+		<com.cube.storm.ui.view.PagerSlidingTabStrip
 			android:layout_width="match_parent"
 			android:layout_height="48dip"
 			android:id="@+id/indicator"
 			android:background="?colorPrimary"
 			app:pstsShouldExpand="true"
 			app:pstsIndicatorColor="?colorPrimaryDark"
-			app:pstsDividerColor="#dd000000"
+			app:pstsDividerColor="?colorPrimaryDark"
+			app:pstsDividerWidth="0.5dp"
+			app:pstsActivateTextColor="?colorPrimaryDark"
+			app:pstsDeactivateTextColor="?colorPrimaryDark"
 		/>
 	</FrameLayout>
 

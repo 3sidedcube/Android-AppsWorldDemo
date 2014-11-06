@@ -14,7 +14,7 @@ if len(sys.argv) <= 1:
 	exit(1)
 
 try:
-	url = "http://gdpc.cubeapis.com/v1.4/apps/" + str(sys.argv[1]) + "/bundle"
+	url = "http://api.stormcorp.co/v1.0/apps/" + str(sys.argv[1]) + "/bundle"
 	print "Downloading from " + url
 except KeyError:
 	print "Society " + str(sys.argv[1]) + " does not exist!"

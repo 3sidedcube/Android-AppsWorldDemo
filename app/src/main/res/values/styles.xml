@@ -1,7 +1,7 @@
 <resources>
 	<style name="DefaultTheme" parent="Theme.AppCompat.Light.DarkActionBar">
 		<item name="colorPrimary">@color/primary</item>
-		<item name="colorPrimaryDark">#ffaa0000</item>
+		<item name="colorPrimaryDark">@color/secondary</item>
 		<item name="android:windowContentOverlay">@null</item>
 	</style>
 </resources>
