@@ -1,4 +1,4 @@
-package stormcorp.co.awdemo;
+package co.stormcorp.awdemo;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
