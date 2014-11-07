@@ -22,8 +22,14 @@
 				<action android:name="android.intent.action.MAIN" />
 			</intent-filter>
 		</activity>
-		<activity android:name=".MainActivity" android:theme="@style/DefaultTheme" />
-		<activity android:name=".SettingsActivity" android:theme="@style/DefaultTheme" />
+		<activity android:name=".MainActivity" android:theme="@style/DefaultTheme" android:launchMode="singleTop" />
+		<activity android:name=".ContentActivity" android:theme="@style/DefaultTheme" android:parentActivityName=".MainActivity">
+			<meta-data
+				android:name="android.support.PARENT_ACTIVITY"
+				android:value="co.stormcorp.awdemo.MainActivity"
+			/>
+		</activity>
+		<activity android:name=".SettingsActivity" android:theme="@style/DefaultTheme" android:screenOrientation="portrait" />
 
 		<activity android:name="com.cube.storm.ui.activity.StormActivity" android:theme="@style/DefaultTheme" />
 		<activity android:name="com.cube.storm.ui.activity.VideoPlayerActivity" android:theme="@style/DefaultTheme" />

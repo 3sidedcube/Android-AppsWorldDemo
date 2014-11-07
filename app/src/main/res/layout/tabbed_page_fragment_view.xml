@@ -23,6 +23,7 @@
 			app:pstsDividerWidth="0.5dp"
 			app:pstsActivateTextColor="?colorPrimaryDark"
 			app:pstsDeactivateTextColor="?colorPrimaryDark"
+			app:pstsActivateIconTint="?colorPrimaryDark"
 		/>
 	</FrameLayout>
 

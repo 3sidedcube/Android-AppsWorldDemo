@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.cube.storm.ContentSettings;
 import com.cube.storm.content.lib.Environment;
+import com.cube.storm.content.lib.listener.UpdateListener;
 import com.cube.storm.content.model.Manifest;
 import com.cube.storm.content.model.Manifest.FileDescriptor;
 import com.google.gson.JsonElement;
@@ -208,11 +209,24 @@ public class SettingsActivity extends PreferenceActivity implements OnPreference
 
 							clearCache();
 
-							Intent intent = getBaseContext().getPackageManager().getLaunchIntentForPackage(getBaseContext().getPackageName());
-							intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-							startActivity(intent);
+							final ProgressDialog loader = new ProgressDialog(SettingsActivity.this);
+							loader.setMessage("Downloading bundle...");
+							loader.show();
 
-							finish();
+							ContentSettings.getInstance().setUpdateListener(new UpdateListener()
+							{
+								@Override public void onUpdateDownloaded()
+								{
+									loader.dismiss();
+
+									Intent intent = getBaseContext().getPackageManager().getLaunchIntentForPackage(getBaseContext().getPackageName());
+									intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+									startActivity(intent);
+
+									finish();
+								}
+							});
+							ContentSettings.getInstance().getUpdateManager().checkForBundle();
 						}
 						else if (failed)
 						{

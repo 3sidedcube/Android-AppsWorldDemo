@@ -14,7 +14,9 @@ import com.cube.storm.ui.model.Model;
 import com.cube.storm.ui.model.descriptor.PageDescriptor;
 import com.cube.storm.ui.model.page.Page;
 import com.cube.storm.ui.model.page.PageCollection;
+import com.cube.storm.util.lib.debug.Debug;
 
+import co.stormcorp.awdemo.ContentActivity;
 import co.stormcorp.awdemo.MainActivity;
 import co.stormcorp.awdemo.fragment.OverrideFragment;
 
@@ -29,7 +31,7 @@ public class OverrideIntentFactory extends IntentFactory
 	{
 		FragmentIntent ret = super.getFragmentIntentForPageDescriptor(pageDescriptor);
 
-		if ("app://native/xxx".equalsIgnoreCase(pageDescriptor.getSrc()))
+		if ("app://native/welcome".equalsIgnoreCase(pageDescriptor.getSrc()))
 		{
 			if (ret != null)
 			{
@@ -67,9 +69,12 @@ public class OverrideIntentFactory extends IntentFactory
 
 		Class<? extends Model> pageType = UiSettings.getInstance().getViewFactory().getModelForView(pageDescriptor.getType());
 
+		Debug.out(ret);
+		Debug.out(pageType);
+
 		if (pageType != null)
 		{
-			if (Page.class.isAssignableFrom(pageType) || PageCollection.class.isAssignableFrom(pageType))
+			if (PageCollection.class.isAssignableFrom(pageType))
 			{
 				if (ret != null)
 				{
@@ -79,7 +84,28 @@ public class OverrideIntentFactory extends IntentFactory
 				}
 				else
 				{
+					Bundle args = new Bundle();
+					args.putSerializable(StormActivity.EXTRA_URI, pageDescriptor.getSrc());
+
 					ret = new Intent(context, MainActivity.class);
+					ret.putExtras(args);
+				}
+			}
+			else if (Page.class.isAssignableFrom(pageType))
+			{
+				if (ret != null)
+				{
+					Bundle extras = ret.getExtras();
+					ret = new Intent(context, ContentActivity.class);
+					ret.putExtras(extras);
+				}
+				else
+				{
+					Bundle args = new Bundle();
+					args.putSerializable(StormActivity.EXTRA_URI, pageDescriptor.getSrc());
+
+					ret = new Intent(context, ContentActivity.class);
+					ret.putExtras(args);
 				}
 			}
 		}
