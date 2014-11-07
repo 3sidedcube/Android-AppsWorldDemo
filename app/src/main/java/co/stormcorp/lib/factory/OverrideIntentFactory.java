@@ -19,6 +19,7 @@ import com.cube.storm.util.lib.debug.Debug;
 import co.stormcorp.awdemo.ContentActivity;
 import co.stormcorp.awdemo.MainActivity;
 import co.stormcorp.awdemo.fragment.OverrideFragment;
+import co.stormcorp.awdemo.fragment.ShakeItFragment;
 
 /**
  * Example intent factory for overriding fragment
@@ -31,18 +32,18 @@ public class OverrideIntentFactory extends IntentFactory
 	{
 		FragmentIntent ret = super.getFragmentIntentForPageDescriptor(pageDescriptor);
 
-		if ("app://native/welcome".equalsIgnoreCase(pageDescriptor.getSrc()))
+		if ("app://native/pages/intro".equalsIgnoreCase(pageDescriptor.getSrc()))
 		{
 			if (ret != null)
 			{
-				ret.setFragment(OverrideFragment.class);
+				ret.setFragment(ShakeItFragment.class);
 			}
 			else
 			{
 				Bundle args = new Bundle();
 				args.putSerializable(StormActivity.EXTRA_URI, pageDescriptor.getSrc());
 
-				ret = new FragmentIntent(OverrideFragment.class, null, args);
+				ret = new FragmentIntent(ShakeItFragment.class, null, args);
 			}
 		}
 		else if ("cache://pages/39.json".equalsIgnoreCase(pageDescriptor.getSrc()))
