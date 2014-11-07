@@ -31,7 +31,6 @@
 		android:layout_marginLeft="320dp"
 		android:scaleType="centerCrop"
 		android:paddingLeft="80dp"
-
 	/>
 
 	<ImageView
