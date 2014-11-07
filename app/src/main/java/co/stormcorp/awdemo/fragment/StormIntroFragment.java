@@ -19,7 +19,7 @@ public class StormIntroFragment extends Fragment
 		View shakeItView = inflater.inflate(R.layout.fragment_storm_intro, container, false);
 
 		TextView appName = (TextView)shakeItView.findViewById(R.id.app_text);
-		appName.setText(getString(R.string.your_in) + getString(R.string.app_name));
+		appName.setText("You're In, " + getString(R.string.app_name));
 
 		Animation[] anims = new Animation[6];
 		int[] timings = {22976, 18346, 6862, 15832, 19649, 29917};
