@@ -18,9 +18,8 @@ public class ShakeItFragment extends Fragment
 	{
 		View shakeItView = inflater.inflate(R.layout.fragment_shake_it, container, false);
 
-		TextView shakeText = (TextView)shakeItView.findViewById(R.id.shake_text);
-		Animation shake = AnimationUtils.loadAnimation(getActivity().getBaseContext(), R.anim.shake);
-		shakeText.startAnimation(shake);
+		TextView appName = (TextView)shakeItView.findViewById(R.id.app_text);
+		appName.setText(getString(R.string.your_in) + getString(R.string.app_name));
 
 		Animation[] anims = new Animation[6];
 		int[] timings = {22976, 18346, 6862, 15832, 19649, 29917};
