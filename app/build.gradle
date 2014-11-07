@@ -102,9 +102,8 @@ task setTint() {
 		{
 			long color = Long.parseLong(tint.substring(1), 16);
 			secondary = (color & 0xfefefe) >> 1;
+			secondary = String.format("#%06X", (0xFFFFFF & secondary));
 		}
-
-		String hexColor = String.format("#%06X", (0xFFFFFF & secondary));
 
 		def valueWriter = file("src/main/res/values/colors.xml")
 		valueWriter.write(
@@ -112,7 +111,7 @@ task setTint() {
 			"\n" +
 			"<resources>\n" +
 			"\t<color name=\"primary\">" + tint + "</color>\n" +
-			"\t<color name=\"secondary\">" + hexColor + "</color>\n" +
+			"\t<color name=\"secondary\">" + secondary + "</color>\n" +
 			"</resources>"
 		)
 	}
