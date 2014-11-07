@@ -11,12 +11,12 @@ import android.widget.TextView;
 
 import co.stormcorp.awdemo.R;
 
-public class ShakeItFragment extends Fragment
+public class StormIntroFragment extends Fragment
 {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
-		View shakeItView = inflater.inflate(R.layout.fragment_shake_it, container, false);
+		View shakeItView = inflater.inflate(R.layout.fragment_storm_intro, container, false);
 
 		TextView appName = (TextView)shakeItView.findViewById(R.id.app_text);
 		appName.setText(getString(R.string.your_in) + getString(R.string.app_name));
