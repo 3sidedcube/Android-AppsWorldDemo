@@ -20,8 +20,10 @@ public class OverrideFragment extends StormListFragment
 
 		getActivity().setTitle("Overridden page");
 
+		getListView().setAdapter(null);
 		getAdapter().addItem(0, new TestView());
 		getAdapter().notifyDataSetChanged();
+		getListView().setAdapter(getAdapter());
 	}
 
 	public static class TestView extends TextListItem
