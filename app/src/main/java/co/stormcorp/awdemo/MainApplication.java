@@ -53,6 +53,8 @@ public class MainApplication extends Application
 		Debug.DEBUG = true;
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
+		EasyTracker.getInstance().setContext(this);
+
 		contentSettings = new ContentSettings.Builder(this)
 			.appId("STORM_CORP-1-1")
 			.contentBaseUrl("http://api.stormcorp.co/")

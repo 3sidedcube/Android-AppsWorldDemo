@@ -60,6 +60,10 @@ public class OverrideIntentFactory extends IntentFactory
 				ret = new FragmentIntent(OverrideFragment.class, null, args);
 			}
 		}
+		else if (pageDescriptor.getType().equals("ListPage"))
+		{
+			//ret.setFragment();
+		}
 
 		return ret;
 	}
