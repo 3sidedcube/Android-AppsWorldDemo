@@ -94,3 +94,5 @@ app/src/main/assets
 /.idea/libraries
 .DS_Store
 /build
+21.1.0
+s3cmd

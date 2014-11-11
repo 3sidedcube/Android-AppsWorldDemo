@@ -96,7 +96,6 @@ task setTint() {
 	{
 		String tint = apptint1
 		tint = !tint.startsWith("#") ? "#" + tint : tint
-		tint = tint.length() == 7 ? tint + "ff" : tint
 
 		if (secondary == null)
 		{
