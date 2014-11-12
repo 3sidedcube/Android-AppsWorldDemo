@@ -6,6 +6,7 @@ import com.cube.storm.UiSettings;
 import com.cube.storm.ui.fragment.StormListFragment;
 import com.cube.storm.util.lib.debug.Debug;
 
+import co.stormcorp.awdemo.R;
 import co.stormcorp.lib.factory.StatsManager;
 
 /**
@@ -30,7 +31,7 @@ public class GAFragment extends StormListFragment
 			{
 				String appTitle = UiSettings.getInstance().getTextProcessor().process(getPage().getTitle().getContent());
 				Debug.out(appTitle);
-				StatsManager.getInstance().registerPage(appTitle, getActivity());
+				StatsManager.getInstance().registerPage(getString(R.string.app_name) + " > " + appTitle, getActivity());
 
 				sent = true;
 			}
@@ -54,7 +55,7 @@ public class GAFragment extends StormListFragment
 			{
 				String appTitle = UiSettings.getInstance().getTextProcessor().process(getPage().getTitle().getContent());
 				Debug.out(appTitle);
-				StatsManager.getInstance().registerPage(appTitle, getActivity());
+				StatsManager.getInstance().registerPage(getString(R.string.app_name) + " > " + appTitle, getActivity());
 			}
 		}
 	}
