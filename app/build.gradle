@@ -53,7 +53,7 @@ dependencies {
 	compile project(':Libraries:LightningLanguage')
 	compile project(':Libraries:LightningMessage')
 	compile project(':Libraries:LightningUi')
-	compile files('lib/libGoogleAnalysticsV2.jar')
+	compile files('lib/libGoogleAnalyticsV2.jar')
 }
 
 def generatePackage(String name)

@@ -1,25 +1,8 @@
 package co.stormcorp.lib.factory;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.location.Address;
-import android.location.Geocoder;
-import android.location.Location;
-import android.os.AsyncTask;
-import android.text.TextUtils;
 
-import com.google.android.gms.wallet.fragment.Dimension;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-
-import net.callumtaylor.asynchttp.AsyncHttpClient;
-import net.callumtaylor.asynchttp.obj.entity.JsonEntity;
-import net.callumtaylor.asynchttp.response.JsonResponseHandler;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import com.google.analytics.tracking.android.EasyTracker;
 
 public class StatsManager
 {
@@ -60,6 +43,7 @@ public class StatsManager
 		//if (ModuleSettings.MODULE_GANALYTICS_ENABLED)
 		{
 			EasyTracker.getTracker().sendView(pageName);
+			EasyTracker.getInstance().dispatch();
 		}
 	}
 }

@@ -21,6 +21,7 @@ import com.cube.storm.message.lib.receiver.GCMReceiver;
 import com.cube.storm.ui.data.ContentDensity;
 import com.cube.storm.ui.model.App;
 import com.cube.storm.util.lib.debug.Debug;
+import com.google.analytics.tracking.android.EasyTracker;
 import com.google.gson.JsonObject;
 
 import net.callumtaylor.asynchttp.AsyncHttpClient;
