@@ -18,6 +18,7 @@ import com.cube.storm.util.lib.debug.Debug;
 
 import co.stormcorp.awdemo.ContentActivity;
 import co.stormcorp.awdemo.MainActivity;
+import co.stormcorp.awdemo.fragment.GAFragment;
 import co.stormcorp.awdemo.fragment.OverrideFragment;
 import co.stormcorp.awdemo.fragment.StormIntroFragment;
 
@@ -58,6 +59,22 @@ public class OverrideIntentFactory extends IntentFactory
 				args.putSerializable(StormActivity.EXTRA_URI, pageDescriptor.getSrc());
 
 				ret = new FragmentIntent(OverrideFragment.class, null, args);
+			}
+		}
+		else if (pageDescriptor.getType().equals("ListPage"))
+		{
+			Debug.out("USING GA FRAGMENT");
+
+			if (ret != null)
+			{
+				ret.setFragment(GAFragment.class);
+			}
+			else
+			{
+				Bundle args = new Bundle();
+				args.putSerializable(StormActivity.EXTRA_URI, pageDescriptor.getSrc());
+
+				ret = new FragmentIntent(GAFragment.class, null, args);
 			}
 		}
 

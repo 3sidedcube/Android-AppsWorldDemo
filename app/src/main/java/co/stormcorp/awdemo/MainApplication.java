@@ -21,6 +21,7 @@ import com.cube.storm.message.lib.receiver.GCMReceiver;
 import com.cube.storm.ui.data.ContentDensity;
 import com.cube.storm.ui.model.App;
 import com.cube.storm.util.lib.debug.Debug;
+import com.google.analytics.tracking.android.EasyTracker;
 import com.google.gson.JsonObject;
 
 import net.callumtaylor.asynchttp.AsyncHttpClient;
@@ -52,6 +53,8 @@ public class MainApplication extends Application
 
 		Debug.DEBUG = true;
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+		EasyTracker.getInstance().setContext(this);
 
 		contentSettings = new ContentSettings.Builder(this)
 			.appId("STORM_CORP-1-1")
