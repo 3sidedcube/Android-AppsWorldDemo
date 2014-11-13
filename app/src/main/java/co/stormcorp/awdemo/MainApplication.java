@@ -18,11 +18,9 @@ import com.cube.storm.content.lib.listener.UpdateListener;
 import com.cube.storm.content.model.Manifest;
 import com.cube.storm.language.lib.processor.LanguageTextProcessor;
 import com.cube.storm.message.lib.listener.RegisterListener;
-import com.cube.storm.message.lib.receiver.GCMReceiver;
 import com.cube.storm.ui.data.ContentDensity;
 import com.cube.storm.ui.model.App;
 import com.cube.storm.util.lib.debug.Debug;
-import com.google.analytics.tracking.android.EasyTracker;
 import com.google.gson.JsonObject;
 
 import net.callumtaylor.asynchttp.AsyncHttpClient;
@@ -56,7 +54,7 @@ public class MainApplication extends Application
 		Debug.DEBUG = true;
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-		EasyTracker.getInstance().setContext(this);
+		//EasyTracker.getInstance().setContext(this);
 
 		contentSettings = new ContentSettings.Builder(this)
 			.appId("STORM_CORP-1-" + getString(R.string.app_id))
@@ -139,7 +137,7 @@ public class MainApplication extends Application
 			.build();
 
 		// register for gcm
-		new GCMReceiver().register(this);
+		//new GCMReceiver().register(this);
 
 		// Loading app json
 		loadApp();
@@ -169,7 +167,7 @@ public class MainApplication extends Application
 
 		if (manifest != null && orig != null)
 		{
-			if (orig.getTimestamp() >= manifest.getTimestamp() && !developerMode)
+			if (!developerMode)
 			{
 				clearCache();
 			}

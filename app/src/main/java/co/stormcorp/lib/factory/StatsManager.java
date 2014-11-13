@@ -2,8 +2,6 @@ package co.stormcorp.lib.factory;
 
 import android.content.Context;
 
-import com.google.analytics.tracking.android.EasyTracker;
-
 public class StatsManager
 {
 	private static StatsManager instance;
@@ -21,7 +19,7 @@ public class StatsManager
 	{
 		//if (ModuleSettings.MODULE_GANALYTICS_ENABLED)
 		{
-			EasyTracker.getInstance().dispatch();
+//			EasyTracker.getInstance().dispatch();
 		}
 	}
 
@@ -29,8 +27,8 @@ public class StatsManager
 	{
 		//f (ModuleSettings.MODULE_GANALYTICS_ENABLED)
 		{
-			EasyTracker.getTracker().sendEvent(pageName, action, label, 1L);
-			EasyTracker.getInstance().dispatch();
+//			EasyTracker.getTracker().sendEvent(pageName, action, label, 1L);
+//			EasyTracker.getInstance().dispatch();
 		}
 	}
 
@@ -42,8 +40,8 @@ public class StatsManager
 	{
 		//if (ModuleSettings.MODULE_GANALYTICS_ENABLED)
 		{
-			EasyTracker.getTracker().sendView(pageName);
-			EasyTracker.getInstance().dispatch();
+//			EasyTracker.getTracker().sendView(pageName);
+//			EasyTracker.getInstance().dispatch();
 		}
 	}
 }

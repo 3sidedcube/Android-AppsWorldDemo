@@ -13,8 +13,6 @@ import com.cube.storm.UiSettings;
 import com.cube.storm.content.model.Manifest;
 import com.cube.storm.util.lib.debug.Debug;
 
-import co.stormcorp.lib.factory.StatsManager;
-
 /**
  * Entry point of the app.
  *
@@ -27,7 +25,7 @@ public class BootActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 
-		StatsManager.getInstance().registerEvent(getString(R.string.app_name), getString(R.string.app_name), getString(R.string.app_name));
+		//StatsManager.getInstance().registerEvent(getString(R.string.app_name), getString(R.string.app_name), getString(R.string.app_name));
 
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		boolean developerMode = prefs.getBoolean("developer_mode", false);
