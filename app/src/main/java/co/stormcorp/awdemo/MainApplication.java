@@ -15,6 +15,7 @@ import com.cube.storm.MessageSettings;
 import com.cube.storm.UiSettings;
 import com.cube.storm.content.lib.Environment;
 import com.cube.storm.content.lib.listener.UpdateListener;
+import com.cube.storm.content.model.Manifest;
 import com.cube.storm.language.lib.processor.LanguageTextProcessor;
 import com.cube.storm.message.lib.listener.RegisterListener;
 import com.cube.storm.message.lib.receiver.GCMReceiver;
@@ -27,6 +28,7 @@ import com.google.gson.JsonObject;
 import net.callumtaylor.asynchttp.AsyncHttpClient;
 import net.callumtaylor.asynchttp.obj.entity.JsonEntity;
 
+import java.io.File;
 import java.util.Locale;
 
 import co.stormcorp.lib.factory.OverrideIntentFactory;
@@ -57,7 +59,7 @@ public class MainApplication extends Application
 		EasyTracker.getInstance().setContext(this);
 
 		contentSettings = new ContentSettings.Builder(this)
-			.appId("STORM_CORP-1-1")
+			.appId("STORM_CORP-1-" + getString(R.string.app_id))
 			.contentBaseUrl("http://api.stormcorp.co/")
 			.contentVersion("v1.0")
 			.contentEnvironment(Environment.LIVE)
@@ -72,6 +74,8 @@ public class MainApplication extends Application
 				}
 			})
 			.build();
+
+		checkMigration(this);
 
 		boolean developerMode = prefs.getBoolean("developer_mode", false);
 		if (developerMode)
@@ -150,5 +154,54 @@ public class MainApplication extends Application
 		{
 			UiSettings.getInstance().setApp(app);
 		}
+	}
+
+	public void checkMigration(Context context)
+	{
+		context = context.getApplicationContext();
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		boolean developerMode = prefs.getBoolean("developer_mode", false);
+
+		Manifest manifest = ContentSettings.getInstance().getBundleBuilder().buildManifest(Uri.parse("cache://manifest.json"));
+		Manifest orig = ContentSettings.getInstance().getBundleBuilder().buildManifest(Uri.parse("assets://manifest.json"));
+
+		Debug.out(manifest.getTimestamp(), orig.getTimestamp());
+
+		if (manifest != null && orig != null)
+		{
+			if (orig.getTimestamp() >= manifest.getTimestamp() && !developerMode)
+			{
+				clearCache();
+			}
+		}
+	}
+
+	public void clearCache()
+	{
+		String path = getFilesDir().getAbsolutePath();
+		deleteRecursive(new File(path, "pages/"));
+		deleteRecursive(new File(path, "content/"));
+		deleteRecursive(new File(path, "languages/"));
+		deleteRecursive(new File(path, "data/"));
+		deleteRecursive(new File(path, "app.json"));
+		deleteRecursive(new File(path, "manifest.json"));
+	}
+
+	public void deleteRecursive(File fileOrDirectory)
+	{
+		if (fileOrDirectory.isDirectory())
+		{
+			File[] files = fileOrDirectory.listFiles();
+
+			if (files != null)
+			{
+				for (File child : files)
+				{
+					deleteRecursive(child);
+				}
+			}
+		}
+
+		Debug.out("deleted %s %s", fileOrDirectory, fileOrDirectory.delete());
 	}
 }

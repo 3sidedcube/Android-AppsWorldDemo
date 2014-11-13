@@ -80,6 +80,7 @@ task setName() {
 		valueWriter.write(
 			"<resources>\n" +
 			"\t<string name=\"app_name\">" + appname.replaceAll("[^a-zA-Z0-9\\s_-]", "") + "</string>\n" +
+			"\t<string name=\"app_id\">" + appid + "</string>\n" +
 			"</resources>"
 		)
 	}
